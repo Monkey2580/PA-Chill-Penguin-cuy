@@ -30,7 +30,7 @@ Partial Class Form1
         '
         Me.Pb.Location = New System.Drawing.Point(0, 0)
         Me.Pb.Name = "Pb"
-        Me.Pb.Size = New System.Drawing.Size(1329, 676)
+        Me.Pb.Size = New System.Drawing.Size(1500, 1500)
         Me.Pb.TabIndex = 0
         Me.Pb.TabStop = False
         '
