@@ -30,7 +30,7 @@ Partial Class Form1
         '
         Me.Pb.Location = New System.Drawing.Point(0, 0)
         Me.Pb.Name = "Pb"
-        Me.Pb.Size = New System.Drawing.Size(1164, 598)
+        Me.Pb.Size = New System.Drawing.Size(1329, 676)
         Me.Pb.TabIndex = 0
         Me.Pb.TabStop = False
         '
@@ -38,7 +38,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1161, 596)
+        Me.ClientSize = New System.Drawing.Size(1329, 673)
         Me.Controls.Add(Me.Pb)
         Me.Name = "Form1"
         Me.Text = "Form1"
