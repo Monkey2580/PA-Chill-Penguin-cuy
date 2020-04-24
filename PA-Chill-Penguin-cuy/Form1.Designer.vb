@@ -22,10 +22,30 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container()
+        Me.Pb = New System.Windows.Forms.PictureBox()
+        CType(Me.Pb, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'Pb
+        '
+        Me.Pb.Location = New System.Drawing.Point(0, 0)
+        Me.Pb.Name = "Pb"
+        Me.Pb.Size = New System.Drawing.Size(800, 452)
+        Me.Pb.TabIndex = 0
+        Me.Pb.TabStop = False
+        '
+        'Form1
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Pb)
+        Me.Name = "Form1"
         Me.Text = "Form1"
+        CType(Me.Pb, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+
     End Sub
 
+    Friend WithEvents Pb As PictureBox
 End Class
