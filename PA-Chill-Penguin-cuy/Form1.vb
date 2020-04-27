@@ -11,8 +11,7 @@
     Dim direction As Char = "l"
     Dim action As String = "idle"
     Dim edge As String = "left"
-    Dim iColor1(100, 100) As Integer
-    Dim iColor2(100, 100) As Integer
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -28,7 +27,7 @@
 
         If action = "idle" Then
 
-            GFX.DrawImage(PutTogether(bg, Normal1, Normal2), 0, 0)
+            GFX.DrawImage(PutTogether(bg, Normal1, Normal2), 100, 0)
 
         ElseIf action = "slide" Then
 
@@ -135,12 +134,13 @@
     Function Maskingonly(Bg As Bitmap, mask As Bitmap, x As Integer, y As Integer)
         Dim curcolor1 As Color
         Dim curcolor As Integer
-        If mask.GetPixel(x, y) = Color.White Then
+        If mask.GetPixel(x, y).ToArgb = Color.White.ToArgb Then
             curcolor1 = Bg.GetPixel(x, y)
         Else
             curcolor1 = mask.GetPixel(x, y)
         End If
         curcolor = curcolor1.ToArgb()
+
         Return curcolor
 
     End Function
@@ -150,7 +150,7 @@
         Dim curcolor As Integer
 
 
-        If Sprite.GetPixel(x, y) = Color.Black Then
+        If Sprite.GetPixel(x, y).ToArgb = Color.Black.ToArgb Then
             curcolor1 = Bg.GetPixel(x, y)
         Else
             curcolor1 = Sprite.GetPixel(x, y)
@@ -165,21 +165,21 @@
 
     Function PutTogether(Bg As Bitmap, mask As Bitmap, Sprite As Bitmap)
         Dim curcolor1 As Color
-        Dim curcolor2 As Color
 
 
 
-        For y As Integer = 0 To Sprite.Height - 1
-            For x As Integer = 0 To Sprite.Width - 1
 
-                Bg.SetPixel(x, y, Color.FromArgb(Maskingonly(Bg, mask, x, y)))
-                Bg.SetPixel(x, y, Color.FromArgb(SpriteOnly(Bg, mask, x, y)))
+        For x As Integer = 0 To Sprite.Width - 1
+            For y As Integer = 0 To Sprite.Height - 1
+
+                ''Sprite.SetPixel(x, y, Color.FromArgb(Maskingonly(Bg, mask, x, y)))
+                Sprite.SetPixel(x, y, Color.FromArgb(SpriteOnly(Bg, Sprite, x, y)))
 
             Next
         Next
 
 
-        Return Bg
+        Return Sprite
 
 
 
