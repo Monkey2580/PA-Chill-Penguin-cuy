@@ -42,7 +42,7 @@
 
 
                     Slides.MakeTransparent()
-                    ''  GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
+                    ''  
 
                     If direction = "l" Then
                         If changeDirleft = False Then
@@ -50,6 +50,9 @@
                             Slides.RotateFlip(RotateFlipType.Rotate180FlipY)
 
                         End If
+
+                        GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
+
                         changeDirright = False
                         changeDirleft = True
                     Else
@@ -57,6 +60,9 @@
 
                             Slides.RotateFlip(RotateFlipType.Rotate180FlipY)
                         End If
+
+                        GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
+
                         changeDirright = True
                         changeDirleft = False
                     End If
@@ -72,6 +78,7 @@
 
                             If direction = "l" Then
                                 Slides1.RotateFlip(RotateFlipType.Rotate180FlipY)
+                                Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
                                 direction = "r"
                             End If
 
@@ -88,6 +95,7 @@
 
                             If direction = "r" Then
                                 Slides1.RotateFlip(RotateFlipType.Rotate180FlipY)
+                                Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
                                 direction = "l"
                             End If
 
@@ -102,14 +110,8 @@
                     End Select
 
                 Case Else
-                    If direction = "l" Then
-                        GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
-                    ElseIf direction = "r" Then
 
-                        GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
-                        Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
-                    End If
-
+                    GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
                     action = "idle"
 
                     Timer.Stop()
@@ -125,54 +127,71 @@
 
                 Case tick = 1 To 3
 
-                    GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
-                    Slides.MakeTransparent()
+                    If direction = "l" Then
+                        If changeDirleft = False Then
+
+                            Slides.RotateFlip(RotateFlipType.Rotate180FlipY)
+
+                        End If
+
+                        GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
+
+                        changeDirright = False
+                        changeDirleft = True
+                    Else
+                        If changeDirright = False Then
+
+                            Slides.RotateFlip(RotateFlipType.Rotate180FlipY)
+                        End If
+
+                        GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
+
+                        changeDirright = True
+                        changeDirleft = False
+                    End If
 
                 Case tick = 3 To 8
 
-                    Select Case direction
+                    Select Case edge
 
 
-                        Case "l"
-
-                            If direction = "l" Then
-                                If changeDirleft = False Then
-                                    Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
-
-                                End If
-
-                            End If
-
-                            GFX.DrawImage(Shot, steps, 300, Normal.Width, Normal.Height)
-                            Shot.MakeTransparent()
-                            changeDirright = False
-                            changeDirleft = True
-                        Case "r"
+                        Case "left"
 
                             If direction = "r" Then
-                                If changeDirright = False Then
-                                    Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
-                                End If
+
+                                Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
+                                Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
+                                direction = "l"
+
                             End If
 
                             GFX.DrawImage(Shot, steps, 300, Normal.Width, Normal.Height)
                             Shot.MakeTransparent()
-                            changeDirright = True
-                            changeDirleft = False
+
+
+                        Case "right"
+
+                            If direction = "l" Then
+
+                                Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
+                                Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
+                                direction = "r"
+                                ste.Text = edge
+                            End If
+
+                            GFX.DrawImage(Shot, steps, 300, Normal.Width, Normal.Height)
+                            Shot.MakeTransparent()
+
                     End Select
 
                 Case Else
 
+
+
+
+
+                    GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
                     action = "idle"
-
-                    If direction = "l" Then
-                        GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
-                    ElseIf direction = "r" Then
-
-                        GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
-                        Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
-                    End If
-
                     Dir.Text = direction
                     Timer.Stop()
 
@@ -195,6 +214,7 @@
             If direction = "l" Then
                 Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
                 Slides1.RotateFlip(RotateFlipType.Rotate180FlipY)
+                Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
             End If
 
             direction = "r"
@@ -210,6 +230,8 @@
 
                 Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
                 Slides1.RotateFlip(RotateFlipType.Rotate180FlipY)
+                Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
+
             End If
 
             direction = "l"
