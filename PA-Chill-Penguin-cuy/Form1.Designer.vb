@@ -27,7 +27,8 @@ Partial Class Form1
         Me.Pb = New System.Windows.Forms.PictureBox()
         Me.Timer = New System.Windows.Forms.Timer(Me.components)
         Me.ImgList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.asteps = New System.Windows.Forms.Label()
+        Me.Dir = New System.Windows.Forms.Label()
+        Me.ste = New System.Windows.Forms.Label()
         CType(Me.Pb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -35,7 +36,7 @@ Partial Class Form1
         '
         Me.Pb.Location = New System.Drawing.Point(0, 0)
         Me.Pb.Name = "Pb"
-        Me.Pb.Size = New System.Drawing.Size(256, 223)
+        Me.Pb.Size = New System.Drawing.Size(1309, 597)
         Me.Pb.TabIndex = 0
         Me.Pb.TabStop = False
         '
@@ -50,21 +51,31 @@ Partial Class Form1
         Me.ImgList1.Images.SetKeyName(1, "Slides0.jpg")
         Me.ImgList1.Images.SetKeyName(2, "Slides1.jpg")
         '
-        'asteps
+        'Dir
         '
-        Me.asteps.AutoSize = True
-        Me.asteps.Location = New System.Drawing.Point(12, 575)
-        Me.asteps.Name = "asteps"
-        Me.asteps.Size = New System.Drawing.Size(39, 13)
-        Me.asteps.TabIndex = 1
-        Me.asteps.Text = "Label1"
+        Me.Dir.AutoSize = True
+        Me.Dir.Location = New System.Drawing.Point(56, 431)
+        Me.Dir.Name = "Dir"
+        Me.Dir.Size = New System.Drawing.Size(39, 13)
+        Me.Dir.TabIndex = 1
+        Me.Dir.Text = "Label1"
+        '
+        'ste
+        '
+        Me.ste.AutoSize = True
+        Me.ste.Location = New System.Drawing.Point(56, 467)
+        Me.ste.Name = "ste"
+        Me.ste.Size = New System.Drawing.Size(39, 13)
+        Me.ste.TabIndex = 2
+        Me.ste.Text = "Label1"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(256, 222)
-        Me.Controls.Add(Me.asteps)
+        Me.ClientSize = New System.Drawing.Size(1311, 598)
+        Me.Controls.Add(Me.ste)
+        Me.Controls.Add(Me.Dir)
         Me.Controls.Add(Me.Pb)
         Me.Name = "Form1"
         Me.Text = "Form1"
@@ -77,5 +88,6 @@ Partial Class Form1
     Friend WithEvents Pb As PictureBox
     Friend WithEvents Timer As Timer
     Friend WithEvents ImgList1 As ImageList
-    Friend WithEvents asteps As Label
+    Friend WithEvents Dir As Label
+    Friend WithEvents ste As Label
 End Class

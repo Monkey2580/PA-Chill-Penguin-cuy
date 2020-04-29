@@ -1,17 +1,20 @@
 ﻿Public Class Form1
     Dim Slides As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Slides0.jpg")
     Dim Slides1 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Slides1.jpg")
+    Dim Slides2 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Slides2.jpg")
     Dim Normal As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Normal1.jpg")
     Dim bg As Image = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Bg.jpg")
     Dim Normal1 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Normal2(mask).jpg")
     Dim Normal2 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Normal2.jpg")
+    Dim Shot As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Shot1.jpg")
     Dim GFX As Graphics
     Dim tick As Integer = 0
     Dim steps As Integer = 1120
     Dim direction As Char = "l"
     Dim action As String = "idle"
     Dim edge As String = "left"
-
+    Dim changeDirright As Boolean = False
+    Dim changeDirleft As Boolean = True
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -20,22 +23,47 @@
 
 
         GFX = e.Graphics
-        GFX.DrawImage(bg, 0, 0, bg.Width, bg.Height)
+        GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
+        GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
         Normal.MakeTransparent(Color.White)
         '' ujung stage 1120 x coordinate nya
         Slides.MakeTransparent(Color.White)
 
         If action = "idle" Then
 
-            GFX.DrawImage(PutTogether(bg, Normal1, Normal2), 100, 0)
+
+            GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
+
 
         ElseIf action = "slide" Then
 
-
-
             Select Case tick
+                Case tick = 1 To 2
 
-                Case tick = 1 To 31
+
+                    Slides.MakeTransparent()
+                    ''  GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
+
+                    If direction = "l" Then
+                        If changeDirleft = False Then
+
+                            Slides.RotateFlip(RotateFlipType.Rotate180FlipY)
+
+                        End If
+                        changeDirright = False
+                        changeDirleft = True
+                    Else
+                        If changeDirright = False Then
+
+                            Slides.RotateFlip(RotateFlipType.Rotate180FlipY)
+                        End If
+                        changeDirright = True
+                        changeDirleft = False
+                    End If
+
+
+
+                Case tick = 2 To 30
 
                     Select Case edge
 
@@ -74,15 +102,83 @@
                     End Select
 
                 Case Else
+                    If direction = "l" Then
+                        GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
+                    ElseIf direction = "r" Then
+
+                        GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
+                        Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
+                    End If
+
                     action = "idle"
 
                     Timer.Stop()
-                    GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
+                    ste.Text = steps
+
+
+            End Select
+
+        ElseIf action = "Shot" Then
+
+
+            Select Case tick
+
+                Case tick = 1 To 3
+
+                    GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
+                    Slides.MakeTransparent()
+
+                Case tick = 3 To 8
+
+                    Select Case direction
+
+
+                        Case "l"
+
+                            If direction = "l" Then
+                                If changeDirleft = False Then
+                                    Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
+
+                                End If
+
+                            End If
+
+                            GFX.DrawImage(Shot, steps, 300, Normal.Width, Normal.Height)
+                            Shot.MakeTransparent()
+                            changeDirright = False
+                            changeDirleft = True
+                        Case "r"
+
+                            If direction = "r" Then
+                                If changeDirright = False Then
+                                    Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
+                                End If
+                            End If
+
+                            GFX.DrawImage(Shot, steps, 300, Normal.Width, Normal.Height)
+                            Shot.MakeTransparent()
+                            changeDirright = True
+                            changeDirleft = False
+                    End Select
+
+                Case Else
+
+                    action = "idle"
+
+                    If direction = "l" Then
+                        GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
+                    ElseIf direction = "r" Then
+
+                        GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
+                        Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
+                    End If
+
+                    Dir.Text = direction
+                    Timer.Stop()
+
             End Select
 
         End If
-
-
 
     End Sub
 
@@ -95,45 +191,54 @@
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
 
         If e.KeyCode = Keys.Right Then
+
             If direction = "l" Then
                 Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
                 Slides1.RotateFlip(RotateFlipType.Rotate180FlipY)
             End If
+
             direction = "r"
             steps += 10
             edge = "right"
             Refresh()
+
         End If
+
         If e.KeyCode = Keys.Left Then
+
             If direction = "r" Then
+
                 Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
                 Slides1.RotateFlip(RotateFlipType.Rotate180FlipY)
             End If
+
             direction = "l"
             steps -= 10
             edge = "left"
             Refresh()
         End If
+
         If e.KeyCode = Keys.S Then
             action = "slide"
+            tick = 1
+            Pb.Refresh()
+            Timer.Start()
+
+        End If
+
+        If e.KeyCode = Keys.I Then
+            action = "Shot"
             tick = 1
             Timer.Start()
             Pb.Refresh()
         End If
 
-        If e.KeyCode = Keys.T Then
-            'Maskingonly(bg, Normal1)
-            'Maskingonly(bg, Normal2)
-            Pb.Refresh()
-        End If
-
-
-
     End Sub
 
-    Function Maskingonly(Bg As Bitmap, mask As Bitmap, x As Integer, y As Integer)
+    Function MaskingOnly(Bg As Bitmap, mask As Bitmap, x As Integer, y As Integer)
         Dim curcolor1 As Color
         Dim curcolor As Integer
+
         If mask.GetPixel(x, y).ToArgb = Color.White.ToArgb Then
             curcolor1 = Bg.GetPixel(x, y)
         Else
@@ -148,7 +253,6 @@
     Function SpriteOnly(Bg As Bitmap, Sprite As Bitmap, x As Integer, y As Integer)
         Dim curcolor1 As Color
         Dim curcolor As Integer
-
 
         If Sprite.GetPixel(x, y).ToArgb = Color.Black.ToArgb Then
             curcolor1 = Bg.GetPixel(x, y)
@@ -167,42 +271,18 @@
         Dim curcolor1 As Color
 
 
-
-
         For x As Integer = 0 To Sprite.Width - 1
             For y As Integer = 0 To Sprite.Height - 1
 
-                ''Sprite.SetPixel(x, y, Color.FromArgb(Maskingonly(Bg, mask, x, y)))
-                Sprite.SetPixel(x, y, Color.FromArgb(SpriteOnly(Bg, Sprite, x, y)))
+                curcolor1 = Color.FromArgb(MaskingOnly(Bg, mask, x, y))
+
+                ''    Sprite.SetPixel(x, y, Color.FromArgb(SpriteOnly(Bg, curcolor1, x, y)))
 
             Next
         Next
 
-
         Return Sprite
 
-
-
-        'For y As Integer = 0 To mask.Height - 1
-        '    For x As Integer = 0 To mask.Width - 1
-        '        curcolor1 = mask.GetPixel(x, y)
-        '        curcolor2 = Bg.GetPixel(x, y)
-        '        If curcolor1.ToArgb = Color.Black.ToArgb Then
-
-        '            iColor(x, y) = Int(Color.Black.ToArgb())
-
-        '        Else
-
-        '            iColor(x, y) = Int(curcolor2.ToArgb())
-
-        '        End If
-        '    Next
-        'Next
-
     End Function
-
-
-
-
 
 End Class
