@@ -3,12 +3,16 @@
     Dim Slides1 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Slides1.jpg")
     Dim Slides2 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Slides2.jpg")
     Dim Normal As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Normal1.jpg")
-    Dim bg As Image = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Bg.jpg")
+    Dim bg As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Bg.jpg")
     Dim Normal1 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Normal2(mask).jpg")
     Dim Normal2 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Normal2.jpg")
     Dim Shot As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Shot1.jpg")
     Dim iceShot As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\iceShot.jpg")
+    Dim SpriteSheet1 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Spritesheet Color.jpg")
+    Dim SpriteSheet2 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Spritesheet Black.jpg")
     Dim GFX As Graphics
+    Dim test As Bitmap
+    Dim test2 As Color
     Dim tick As Integer
     Dim tickk As Integer
     Dim steps As Integer = 1119
@@ -18,8 +22,13 @@
     Dim edge As String = "left"
     Dim changeDirright As Boolean = False
     Dim changeDirleft As Boolean = True
+    Dim ss() As Integer
+    Dim abcd As Color
+    Dim n As Integer = 0
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        ss = accSpriteSheet(SpriteSheet1, 167, 18, 206, 64)
+        ''Maskingbg(bg, SpriteSheet2, 167, 18, 206, 64, 15, 148)
+        Masktobg(bg, ss, Maskingbg(bg, SpriteSheet2, 167, 18, 206, 64, 15, 148), 167, 18, 206, 64, 15, 148)
     End Sub
 
     Private Sub Pb_Paint(sender As Object, e As PaintEventArgs) Handles Pb.Paint
@@ -32,9 +41,11 @@
         '' ujung stage 1120 x coordinate nya
         Slides.MakeTransparent(Color.White)
 
+
+
         If action = "idle" Then
 
-              GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
+            ''  GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
             GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
 
 
@@ -155,74 +166,76 @@
 
                 Case tick = 1 To 3
 
-                        If direction = "l" Then
-                            If changeDirleft = False Then
+                    If direction = "l" Then
+                        If changeDirleft = False Then
 
-                                Slides.RotateFlip(RotateFlipType.Rotate180FlipY)
+                            Slides.RotateFlip(RotateFlipType.Rotate180FlipY)
 
-                            End If
-
-                            GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
-
-                            changeDirright = False
-                            changeDirleft = True
-                        Else
-                            If changeDirright = False Then
-
-                                Slides.RotateFlip(RotateFlipType.Rotate180FlipY)
-                            End If
-
-                            GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
-
-                            changeDirright = True
-                            changeDirleft = False
                         End If
 
-                    Case tick = 3 To 8
+                        GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
 
-                        Select Case edge
+                        changeDirright = False
+                        changeDirleft = True
+                    Else
+                        If changeDirright = False Then
+
+                            Slides.RotateFlip(RotateFlipType.Rotate180FlipY)
+                        End If
+
+                        GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
+
+                        changeDirright = True
+                        changeDirleft = False
+                    End If
+
+                Case tick = 3 To 8
+
+                    Select Case edge
 
 
-                            Case "left"
+                        Case "left"
 
-                                If direction = "r" Then
+                            If direction = "r" Then
 
-                                    Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
-                                    Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
-                                    direction = "l"
+                                Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
+                                Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
+                                direction = "l"
 
-                                End If
+                            End If
 
-                                GFX.DrawImage(Shot, steps, 300, Normal.Width, Normal.Height)
-                                Shot.MakeTransparent()
+                            GFX.DrawImage(Shot, steps, 300, Normal.Width, Normal.Height)
+                            Shot.MakeTransparent()
 
 
-                            Case "right"
+                        Case "right"
 
-                                If direction = "l" Then
+                            If direction = "l" Then
 
-                                    Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
-                                    Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
-                                    direction = "r"
-                                    ste.Text = edge
-                                End If
+                                Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
+                                Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
+                                direction = "r"
+                                ste.Text = edge
+                            End If
 
-                                GFX.DrawImage(Shot, steps, 300, Normal.Width, Normal.Height)
-                                Shot.MakeTransparent()
+                            GFX.DrawImage(Shot, steps, 300, Normal.Width, Normal.Height)
+                            Shot.MakeTransparent()
 
-                        End Select
+                    End Select
 
-                    Case Else
+                Case Else
 
 
                     GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
-                        ''action = "idle"
-                        Dir.Text = direction
-                        '' Timer.Stop()
+                    ''action = "idle"
+                    Dir.Text = direction
+                    '' Timer.Stop()
 
-                End Select
+            End Select
 
-            End If
+        End If
+
+
 
     End Sub
 
@@ -279,62 +292,113 @@
 
 
             stepss = steps - 30
-                tick = 1
-                tickk = 1
-                Timer.Start()
-                Pb.Refresh()
-            End If
+            tick = 1
+            tickk = 1
+            Timer.Start()
+            Pb.Refresh()
+        End If
+
 
     End Sub
 
-    'Function MaskingOnly(Bg As Bitmap, mask As Bitmap, x As Integer, y As Integer)
-    '    Dim curcolor1 As Color
-    '    Dim curcolor As Integer
-
-    '    If mask.GetPixel(x, y).ToArgb = Color.White.ToArgb Then
-    '        curcolor1 = Bg.GetPixel(x, y)
-    '    Else
-    '        curcolor1 = mask.GetPixel(x, y)
-    '    End If
-    '    curcolor = curcolor1.ToArgb()
-
-    '    Return curcolor
-
-    'End Function
-
-    'Function SpriteOnly(Bg As Bitmap, Sprite As Bitmap, x As Integer, y As Integer)
-    '    Dim curcolor1 As Color
-    '    Dim curcolor As Integer
-
-    '    If Sprite.GetPixel(x, y).ToArgb = Color.Black.ToArgb Then
-    '        curcolor1 = Bg.GetPixel(x, y)
-    '    Else
-    '        curcolor1 = Sprite.GetPixel(x, y)
-    '    End If
-
-    '    curcolor = curcolor1.ToArgb
-
-    '    Return curcolor
-
-    'End Function
 
 
-    'Function PutTogether(Bg As Bitmap, mask As Bitmap, Sprite As Bitmap)
-    '    Dim curcolor1 As Color
+    Function accSpriteSheet(sprite As Bitmap, left As Integer, top As Integer, right As Integer, bot As Integer)
+        Dim n As Integer = 0
+        Dim pixel As Color
+        Dim arr(1960) As Integer
+
+        For a As Integer = top To bot
+            For b As Integer = left To right
+                pixel = sprite.GetPixel(b, a)
+                arr(n) = pixel.ToArgb
+                ''MsgBox(arr(n))
+                n += 1
+
+            Next
+        Next
+
+        Return arr
+    End Function
+
+    Function drawspritesheet(sprite As Bitmap, left As Integer, top As Integer, right As Integer, bot As Integer, drawx As Integer, drawy As Integer, arrcolor() As Integer)
+        Dim n As Integer = 0
+        Dim posx, posy As Integer
 
 
-    '    For x As Integer = 0 To Sprite.Width - 1
-    '        For y As Integer = 0 To Sprite.Height - 1
+        posx = right - left
+        posy = bot - top
+        For a As Integer = drawy To posy + drawy
+            For b As Integer = drawx To posx + drawx
+                sprite.SetPixel(b, a, Color.FromArgb(arrcolor(n)))
+                n += 1
+            Next
+        Next
 
-    '            curcolor1 = Color.FromArgb(MaskingOnly(Bg, mask, x, y))
 
-    '            ''    Sprite.SetPixel(x, y, Color.FromArgb(SpriteOnly(Bg, curcolor1, x, y)))
+        Return Nothing
+    End Function
 
-    '        Next
-    '    Next
+    Function Maskingbg(bg As Bitmap, sprite As Bitmap, left As Integer, top As Integer, right As Integer, bot As Integer, drawx As Integer, drawy As Integer)
+        Dim n As Integer = 0
+        Dim posx, posy As Integer
+        Dim curcolor As Color
+        Dim i() As Integer
+        Dim x(1960) As Integer
+        i = accSpriteSheet(sprite, left, top, right, bot)
 
-    '    Return Sprite
+        posx = right - left
+        posy = bot - top
+        For a As Integer = drawy To posy + drawy
+            For b As Integer = drawx To posx + drawx
+                curcolor = Color.FromArgb(i(n))
+                If i(n) = -1 Then '' argb white
 
-    'End Function
+                    curcolor = bg.GetPixel(b, a)
+                    ''  bg.SetPixel(b, a, curcolor) '' 
+                    x(n) = curcolor.ToArgb
+                Else
+                    '' bg.SetPixel(b, a, Color.FromArgb(i(n)))
+                    x(n) = i(n)
+                End If
+
+                n += 1
+            Next
+        Next
+
+
+        Return x
+    End Function
+
+    Function Masktobg(bg As Bitmap, sprite() As Integer, mask() As Integer, left As Integer, top As Integer, right As Integer, bot As Integer, drawx As Integer, drawy As Integer)
+        Dim n As Integer = 0
+        Dim posx, posy As Integer
+        Dim curcolor As Color
+        Dim i() As Integer
+
+
+
+        posx = right - left
+        posy = bot - top
+        For a As Integer = drawy To posy + drawy
+            For b As Integer = drawx To posx + drawx
+                curcolor = Color.FromArgb(sprite(n))
+                '' bg.SetPixel(b, a, curcolor)
+                If curcolor.ToArgb = -16777216 Then ''argb black
+                    curcolor = Color.FromArgb(mask(n))
+                    bg.SetPixel(b, a, curcolor)
+
+                Else
+                    curcolor = Color.FromArgb(sprite(n))
+                    bg.SetPixel(b, a, curcolor)
+
+                End If
+
+                n += 1
+            Next
+        Next
+
+        Return Nothing
+    End Function
 
 End Class
