@@ -21,8 +21,6 @@
     Dim direction As Char = "l"
     Dim action As String = "idle"
     Dim edge As String = "left"
-    Dim posX As Integer = bgsteps
-    Dim posY As Integer
     Dim counter As Integer = 1
     Dim startJumping As Boolean = False
     Dim jumpOnAir As Boolean
@@ -357,49 +355,6 @@
 
             UpdateBg(bg, back)
 
-            posX = posX - vx
-            posY = posY + vy
-            vy = vy + 0.2
-
-
-
-            'If startJumping = True Then
-            '    If posY <= 170 Then
-            '        posY = 170
-            '        vy = 0
-            '        Timer.Stop()
-
-            '        startJumping = False
-            '        jumpOnAir = True
-            '    End If
-            'End If
-
-            'If jumpOnAir = True Then
-            '    Timer.Start()
-
-            '    Select Case counter
-            '        Case counter = 1 To 10
-            '            vx = 15
-            '        Case Else
-            '            vy = 20
-            '            jumpOnAir = False
-            '            jumpLanded = True
-
-            '    End Select
-
-            'End If
-
-            'If jumpLanded = True Then
-
-            '    If posY >= 300 Then
-            '        vy = 0
-            '        vx = 0
-            '        Timer.Stop()
-            '        bgsteps = posX
-            '        jumpLanded = False
-
-            '    End If
-            'End If
 
 
 
@@ -451,8 +406,57 @@
 
 
                 Case tick = 3 To 15
+                    ste.Text = bgsteps
+                    If edge = "right" Then
+                        bgsteps = bgsteps + vx
+                    Else
+                        bgsteps = bgsteps - vx
+                    End If
+
+
+
+
+
+                    bgelev = bgelev + vy
+                    vy = vy + 0.2
 
                     Masktobg(bg, sprite(9), Maskingbg(bg, SpriteSheet2, 46, 126, 85, 165, bgsteps, bgelev), 46, 126, 85, 165, bgsteps, bgelev)
+
+                    If startJumping = True Then
+                        If bgelev <= 100 Then
+                            bgelev = 100
+                            vy = 0
+
+                            startJumping = False
+                            jumpOnAir = True
+                        End If
+                    End If
+
+                    If jumpOnAir = True Then
+                        Timer.Start()
+
+                        Select Case counter
+                            Case counter = 1 To 10
+                                vx = 10
+                            Case Else
+                                vy = 15
+                                jumpOnAir = False
+                                jumpLanded = True
+
+                        End Select
+
+                    End If
+
+                    If jumpLanded = True Then
+
+                        If bgelev >= 155 Then
+                            bgelev = 155
+                            vy = 0
+                            vx = 0
+                            jumpLanded = False
+
+                        End If
+                    End If
 
 
                     Select Case edge
@@ -465,8 +469,6 @@
                             End If
 
                             Masktobg(bg, sprite(25), Maskingbg(bg, SpriteSheet2, 46, 126, 85, 165, bgsteps, bgelev), 46, 126, 85, 165, bgsteps, bgelev)
-
-                            bgsteps += 10
 
                             If bgsteps >= 200 Then
                                 edge = "left"
@@ -482,7 +484,7 @@
 
                             Masktobg(bg, sprite(9), Maskingbg(bg, SpriteSheet2, 46, 126, 85, 165, bgsteps, bgelev), 46, 126, 85, 165, bgsteps, bgelev)
                             Slides1.MakeTransparent()
-                            bgsteps -= 10
+
 
                             If bgsteps <= 15 Then
                                 edge = "right"
@@ -498,17 +500,11 @@
                     Else
                         Masktobg(bg, sprite(16), Maskingbg(bg, SpriteSheet2, 5, 76, 46, 117, bgsteps, bgelev), 5, 76, 46, 117, bgsteps, bgelev)
                     End If
-
-
-                    GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
-
-
-
                     Timer.Stop()
 
             End Select
-
             GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
+
         End If
 
 
@@ -580,8 +576,6 @@
             startJumping = True
             vx = 15
             vy = -15
-            posX = bgsteps
-            posY = 155
             tick = 1
             counter = 1
             Timer.Start()
