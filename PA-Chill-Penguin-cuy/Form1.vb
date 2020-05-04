@@ -1,48 +1,48 @@
 ﻿Public Class Form1
-    Dim Slides As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Slides0.jpg")
-    Dim Slides1 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Slides1.jpg")
-    Dim Slides2 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Slides2.jpg")
-    Dim Normal As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Normal1.jpg")
-    Dim bg As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Bg.jpg")
-    Dim Normal1 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Normal2(mask).jpg")
-    Dim Normal2 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Normal2.jpg")
-    Dim Shot As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\Shot1.jpg")
-    Dim iceShot As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\iceShot.jpg")
-    Dim SpriteSheet1 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\warnagimp.jpg")
-    Dim SpriteSheet2 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy\testingblackgimp.jpg")
+    Dim Slides As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\Slides0.jpg")
+    Dim Slides1 As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\Slides1.jpg")
+    Dim Slides2 As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\Slides2.jpg")
+    Dim Normal As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\Normal1.jpg")
+    Dim bg As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\Bg.jpg")
+    Dim Normal1 As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\Normal2(mask).jpg")
+    Dim Normal2 As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\Normal2.jpg")
+    Dim Shot As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\Shot1.jpg")
+    Dim iceShot As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\iceShot.jpg")
+    Dim SpriteSheet1 As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\warnagimp.jpg")
+    Dim SpriteSheet2 As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\testingblackgimp.jpg")
 
     Dim GFX As Graphics
-        Dim vx, vy As Integer
-        Dim tick As Integer
-        Dim tickk As Integer
-        Dim bgsteps As Integer = 200
-        Dim bgelev As Integer = 155
-        Dim steps As Integer = 1119
-        Dim stepss As Integer = 1090
-        Dim direction As Char = "l"
-        Dim action As String = "idle"
-        Dim edge As String = "left"
-        Dim counter As Integer = 1
-        Dim startJumping As Boolean = False
-        Dim jumpOnAir As Boolean
-        Dim jumpLanded As Boolean
-        Dim summonIceDummy As Boolean
-        Dim changeDirright As Boolean = False
-        Dim changeDirleft As Boolean = True
-        Dim sprite As New List(Of Integer())
-        Dim idle() As Integer
-        Dim slidess() As Integer
-        Dim slidesss() As Integer
-        Dim SetupShotandice() As Integer
-        Dim Setupjump1() As Integer
-        Dim Setupjump2() As Integer
-        Dim back() As Integer
-        Dim stagger() As Integer
-        Dim lever() As Integer
-        Dim jumpdown() As Integer
-        Dim jump() As Integer
-        Dim Shott() As Integer
-        Dim IceDummy1() As Integer
+    Dim vx, vy As Integer
+    Dim tick As Integer
+    Dim tickk As Integer
+    Dim bgsteps As Integer = 200
+    Dim bgelev As Integer = 155
+    Dim steps As Integer = 1119
+    Dim stepss As Integer = 1090
+    Dim direction As Char = "l"
+    Dim action As String = "idle"
+    Dim edge As String = "left"
+    Dim counter As Integer = 1
+    Dim startJumping As Boolean = False
+    Dim jumpOnAir As Boolean
+    Dim jumpLanded As Boolean
+    Dim summonIceDummy As Boolean
+    Dim changeDirright As Boolean = False
+    Dim changeDirleft As Boolean = True
+    Dim sprite As New List(Of Integer())
+    Dim idle() As Integer
+    Dim slidess() As Integer
+    Dim slidesss() As Integer
+    Dim SetupShotandice() As Integer
+    Dim Setupjump1() As Integer
+    Dim Setupjump2() As Integer
+    Dim back() As Integer
+    Dim stagger() As Integer
+    Dim lever() As Integer
+    Dim jumpdown() As Integer
+    Dim jump() As Integer
+    Dim Shott() As Integer
+    Dim IceDummy1() As Integer
         Dim IceDummy2() As Integer
         Dim IceDummy3() As Integer
         Dim windsprite1() As Integer
@@ -393,90 +393,180 @@
                             changeDirright = True
                             changeDirleft = False
                         End If
-                    Case tick = 3 To 50
-                        ste.Text = bgsteps
-                        If edge = "right" Then
-                            bgsteps = bgsteps + vx
-                        Else
-                            bgsteps = bgsteps - vx
-                        End If
+                Case tick = 3 To 13
 
-                        bgelev = bgelev + vy
-                        vy = vy + 0.2
+                    'If edge = "right" Then
+                    '    bgsteps = bgsteps + vx
+                    'Else
+                    '    bgsteps = bgsteps - vx
+                    'End If
 
-                        ' Masktobg(bg, sprite(5), Maskingbg(bg, SpriteSheet2, 130, 3, 163, 65, bgsteps, bgelev), 130, 3, 163, 65, bgsteps, bgelev)
-                        If leapStart = True Then
+                    'bgelev = bgelev + vy
+                    'vy = vy + 0.2
 
-                            If bgelev >= hitLever.Y And bgelev <= hitLever.Y + 30 Then
-                                leapAtLever = True
-                                leapStart = False
+                    'If leapAtLever = True Then
+                    '    Select Case counter
+                    '        Case counter = 4 To 10
+                    '            vy = 0
+                    '            vx = 0
+                    '        Case Else
+                    '            leapAtLever = False
+                    '            leapDown = True
+                    '            vx = 15
+                    '            vy = 20
+                    '    End Select
+                    'End If
 
-                            End If
-                        End If
+                    'If leapStart = True Then
 
-                        If leapAtLever = True Then
-                            Timer.Start()
+                    '    If bgelev >= hitLever.Y And bgelev <= hitLever.Y + 30 Then
+                    '        leapAtLever = True
+                    '        leapStart = False
 
-                            Select Case counter
-                                Case counter = 1 To 50
-                                    vy = 0
-                                    vx = 0
-                                Case Else
-                                    leapAtLever = False
-                                    leapDown = True
-                                    vx = 15
-                                    vy = 20
-                            End Select
+                    'End If
+                    'End If
+
+                    '
 
 
-                        End If
-                        'case dibawah buat agar posisinya ke hitBoxLever
-                        Select Case edge
 
-                            Case "right"
 
-                                If direction = "l" Then
-                                    Masktobg(bg, sprite(5), Maskingbg(bg, SpriteSheet2, 130, 3, 163, 65, bgsteps, bgelev), 130, 3, 163, 65, bgsteps, bgelev)
-                                    direction = "r"
-                                End If
+                    Select Case edge
 
-                                Masktobg(bg, sprite(11), Maskingbg(bg, SpriteSheet2, 130, 3, 163, 65, bgsteps, bgelev), 130, 3, 163, 65, bgsteps, bgelev)
+                        Case "right"
 
-                                If bgsteps >= 115 Then
-                                    edge = "left"
-                                    ste.Text = steps
-                                End If
-
-                            Case "left"
-
-                                If direction = "r" Then
-                                    Masktobg(bg, sprite(11), Maskingbg(bg, SpriteSheet2, 130, 3, 163, 65, bgsteps, bgelev), 130, 3, 163, 65, bgsteps, bgelev)
-                                    direction = "l"
-                                End If
-
-                                Masktobg(bg, sprite(5), Maskingbg(bg, SpriteSheet2, 130, 3, 163, 65, bgsteps, bgelev), 130, 3, 163, 65, bgsteps, bgelev)
-                                Slides1.MakeTransparent()
-
-                                If bgsteps <= 90 Then
-                                    edge = "right"
-                                End If
-
-                        End Select
-                        If leapDown = True Then
-
-                            If bgelev >= 300 Then
-                                vy = 0
-                                vx = 0
-                                Timer.Stop()
-                                steps = bgsteps
-                                leapDown = False
-
-                                Pb.Update()
+                            If direction = "l" Then
+                                Masktobg(bg, sprite(9), Maskingbg(bg, SpriteSheet2, 46, 126, 85, 165, bgsteps, bgelev), 46, 126, 85, 165, bgsteps, bgelev)
+                                direction = "r"
                             End If
 
-                        End If
+                            Masktobg(bg, sprite(25), Maskingbg(bg, SpriteSheet2, 46, 126, 85, 165, bgsteps, bgelev), 46, 126, 85, 165, bgsteps, bgelev)
 
-                    Case Else
+                            If bgsteps >= 115 Then
+                                edge = "left"
+                                ste.Text = steps
+                            End If
+                            If bgsteps <= 100 Then
+                                If bgsteps >= 110 Then
+                                    bgsteps = 110
+                                Else
+                                    bgsteps += 10
+                                End If
+                            End If
+                            If bgelev <= 30 Then
+                                bgelev = 30
+                            Else
+                                bgelev -= 20
+                            End If
+
+                            ste.Text = bgelev
+                        Case "left"
+
+                            If direction = "r" Then
+                                Masktobg(bg, sprite(25), Maskingbg(bg, SpriteSheet2, 46, 126, 85, 165, bgsteps, bgelev), 46, 126, 85, 165, bgsteps, bgelev)
+                                direction = "l"
+                            End If
+
+                            Masktobg(bg, sprite(9), Maskingbg(bg, SpriteSheet2, 46, 126, 85, 165, bgsteps, bgelev), 46, 126, 85, 165, bgsteps, bgelev)
+                            Slides1.MakeTransparent()
+
+                            If bgsteps <= 90 Then
+                                edge = "right"
+                            End If
+                            If bgsteps >= 100 Then
+                                If bgsteps <= 110 Then
+                                    bgsteps = 110
+                                Else
+                                    bgsteps -= 10
+                                End If
+                            End If
+                            If bgelev <= 30 Then
+                                bgelev = 30
+                            Else
+                                bgelev -= 20
+                            End If
+                    End Select
+
+                Case tick = 13 To 30
+
+                    Select Case edge
+
+                        Case "right"
+
+                            If direction = "l" Then
+                                Masktobg(bg, sprite(5), Maskingbg(bg, SpriteSheet2, 130, 3, 163, 65, 120, 20), 130, 3, 163, 65, 120, 20)
+                                direction = "r"
+                            End If
+
+                            Masktobg(bg, sprite(21), Maskingbg(bg, SpriteSheet2, 130, 3, 163, 65, 120, 20), 130, 3, 163, 65, 120, 20)
+
+                            If bgsteps >= 115 Then
+                                edge = "left"
+                                ste.Text = steps
+                            End If
+
+                        Case "left"
+
+                            If direction = "r" Then
+                                Masktobg(bg, sprite(21), Maskingbg(bg, SpriteSheet2, 130, 3, 163, 65, 120, 20), 130, 3, 163, 65, 120, 20)
+                                direction = "l"
+                            End If
+
+                            Masktobg(bg, sprite(5), Maskingbg(bg, SpriteSheet2, 130, 3, 163, 65, 120, 20), 130, 3, 163, 65, 120, 20)
+                            Slides1.MakeTransparent()
+
+                            If bgsteps <= 90 Then
+                                edge = "right"
+                            End If
+                            bgsteps = 120
+                            bgelev = 20
+                    End Select
+
+                Case tick = 30 To 40
+
+                    Select Case edge
+
+                        Case "right"
+
+                            If direction = "l" Then
+                                Masktobg(bg, sprite(6), Maskingbg(bg, SpriteSheet2, 169, 19, 205, 64, bgsteps, bgelev), 169, 19, 205, 64, bgsteps, bgelev)
+                                direction = "r"
+                            End If
+
+                            Masktobg(bg, sprite(22), Maskingbg(bg, SpriteSheet2, 169, 19, 205, 64, bgsteps, bgelev), 169, 19, 205, 64, bgsteps, bgelev)
+
+                            If bgsteps >= 115 Then
+                                edge = "left"
+                                ste.Text = steps
+                            End If
+                            If bgelev >= 155 Then
+                                bgelev = 155
+                            Else
+                                bgelev += 20
+                            End If
+                        Case "left"
+
+                            If direction = "r" Then
+                                Masktobg(bg, sprite(22), Maskingbg(bg, SpriteSheet2, 169, 19, 205, 64, bgsteps, bgelev), 169, 19, 205, 64, bgsteps, bgelev)
+                                direction = "l"
+                            End If
+
+                            Masktobg(bg, sprite(6), Maskingbg(bg, SpriteSheet2, 169, 19, 205, 64, bgsteps, bgelev), 169, 19, 205, 64, bgsteps, bgelev)
+                            Slides1.MakeTransparent()
+
+                            If bgsteps <= 90 Then
+                                edge = "right"
+                            End If
+                            If bgelev >= 155 Then
+                                bgelev = 155
+                            Else
+                                bgelev += 20
+                            End If
+                    End Select
+
+
+
+                Case Else
 
                         action = "idle"
 
@@ -486,11 +576,11 @@
                             Masktobg(bg, sprite(16), Maskingbg(bg, SpriteSheet2, 5, 76, 46, 117, bgsteps, bgelev), 5, 76, 46, 117, bgsteps, bgelev)
                         End If
                         Timer.Stop()
-                        GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
-                End Select
 
+            End Select
+            GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
 
-            ElseIf action = "jump" Then
+        ElseIf action = "jump" Then
 
                 UpdateBg(bg, back)
 
