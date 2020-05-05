@@ -1,9 +1,9 @@
 ﻿Public Class Form1
-    Dim bg As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\Bg.jpg")
-    Dim SpriteSheet1 As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\warnagimp.jpg")
-    Dim SpriteSheet2 As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\testingblackgimp.jpg")
-    Dim megamanblack As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\megablack.jpg")
-    Dim megamancolor As Bitmap = Image.FromFile("C:\Users\GEORGE S.MARCELL\source\repos\PA-Chill-Penguin-cuy\megacolor.jpg")
+    Dim bg As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy-1\Bg.jpg")
+    Dim SpriteSheet1 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy-1\warnagimp.jpg")
+    Dim SpriteSheet2 As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy-1\testingblackgimp.jpg")
+    Dim megamanblack As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy-1\megablack.jpg")
+    Dim megamancolor As Bitmap = Image.FromFile("C:\Users\georg\source\repos\PA-Chill-Penguin-cuy-1\megacolor.jpg")
     Dim GFX As Graphics
     Dim vx, vy As Integer
     Dim tick As Integer
@@ -36,20 +36,17 @@
     Dim jump() As Integer
     Dim Shott() As Integer
     Dim IceDummy1() As Integer
-       Dim IceDummy2() As Integer
-       Dim IceDummy3() As Integer
-       Dim windsprite1() As Integer
+    Dim IceDummy2() As Integer
+    Dim IceDummy3() As Integer
+    Dim windsprite1() As Integer
     Dim windsprite2() As Integer
     Dim spriteshot() As Integer
     Dim megaman() As Integer
     Dim intro() As Integer
-    Dim abcd As Color
-       Dim n As Integer = 0
+    Dim n As Integer = 0
 
-        Dim hitLever As Rectangle = New Rectangle(535, 0, 200, 100)
-        Dim myPen As Pen = New Pen(Color.Black, 4)
-        Dim leapStart As Boolean = False
-        Dim leapAtLever As Boolean
+    Dim leapStart As Boolean = False
+    Dim leapAtLever As Boolean
     Dim leapDown As Boolean
 
     Dim icePenguinPos1X1, icePenguinPos1X2, icePenguinPos2X1, icePenguinPos2X2 As Integer
@@ -189,6 +186,7 @@
 
                 Case Else
                     UpdateBg(bg, back)
+                    Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                     Masktobg(bg, sprite(0), Maskingbg(bg, SpriteSheet2, 5, 76, 46, 117, bgsteps, bgelev), 5, 76, 46, 117, bgsteps, bgelev)
                     GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
                     action = "idle"
@@ -201,6 +199,22 @@
 
             Masktobg(bg, sprite(0), Maskingbg(bg, SpriteSheet2, 5, 76, 46, 117, bgsteps, bgelev), 5, 76, 46, 117, bgsteps, bgelev)
             GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
+
+        ElseIf action = "lookleft" Then
+            UpdateBg(bg, back)
+            Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
+
+            Masktobg(bg, sprite(0), Maskingbg(bg, SpriteSheet2, 5, 76, 46, 117, bgsteps, bgelev), 5, 76, 46, 117, bgsteps, bgelev)
+            GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
+
+        ElseIf action = "lookright" Then
+            UpdateBg(bg, back)
+            Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
+
+            Masktobg(bg, sprite(17), Maskingbgrot(bg, SpriteSheet2, 5, 76, 46, 117, bgsteps, bgelev), 5, 76, 46, 117, bgsteps, bgelev)
+            GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
+
+
 
         ElseIf action = "slide" Then
 
@@ -1056,9 +1070,10 @@
         Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
 
             If e.KeyCode = Keys.Right Then
+            action = "lookright"
 
-            If direction = "l" Then
-            End If
+            UpdateBg(bg, back)
+            Masktobg(bg, sprite(17), Maskingbg(bg, SpriteSheet2, 5, 76, 46, 117, bgsteps, bgelev), 5, 76, 46, 117, bgsteps, bgelev)
 
             direction = "r"
             edge = "right"
@@ -1066,19 +1081,18 @@
 
             End If
 
-            If e.KeyCode = Keys.Left Then
+        If e.KeyCode = Keys.Left Then
+            action = "lookleft"
 
-                If direction = "r" Then
+            UpdateBg(bg, back)
+            Masktobg(bg, sprite(0), Maskingbg(bg, SpriteSheet2, 5, 76, 46, 117, bgsteps, bgelev), 5, 76, 46, 117, bgsteps, bgelev)
 
-
-            End If
-
-                direction = "l"
+            direction = "l"
             edge = "left"
             Refresh()
-            End If
+        End If
 
-            If e.KeyCode = Keys.S Then
+        If e.KeyCode = Keys.S Then
                 action = "slide"
                 tick = 1
 
@@ -1142,12 +1156,16 @@
             If direction = "l" Then
                 icePenguinPos1X1 = bgsteps - 30
                 icePenguinPos1X2 = bgsteps - 30
+                icePenguinPos2X1 = icePenguinPos1X1 - 30
+                icePenguinPos2X2 = icePenguinPos1X2 - 30
                 icePenguinPosy = 155
 
                 ''  iceDummyHitBox = New Rectangle(icePenguinPosX, 300, 55, 60)
             Else
                 icePenguinPos1X1 = bgsteps + 20
                 icePenguinPos1X2 = bgsteps + 20
+                icePenguinPos2X1 = icePenguinPos1X1 + 20
+                icePenguinPos2X2 = icePenguinPos1X2 + 20
                 icePenguinPosy = 155
                 ''  iceDummyHitBox = New Rectangle(icePenguinPosX, 300, 55, 60)
             End If
