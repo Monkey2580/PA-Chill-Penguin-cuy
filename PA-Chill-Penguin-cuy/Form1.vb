@@ -61,12 +61,7 @@
     Dim summonmegamen As Boolean
     Dim Respawn As Boolean
     Dim icesnow As Boolean = False
-    ' Dim rechitbox As Rectangle = New Rectangle(megaposx, 300, Normal.Width, Normal.Height  rectanglenya
 
-
-    'notes
-    '' Setiap action awalnya harus ada update()
-    '' case else urutannya = 1.masktob 2.drawbg
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -143,7 +138,6 @@
         sprite.Add(windsprite2)
         spriteshot = accSpriteSheetRot(SpriteSheet1, 130, 128, 174, 176)
         sprite.Add(spriteshot)
-
 
     End Sub
 
@@ -223,6 +217,7 @@
                     Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                 End If
             Else
+                Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                 If summonIceDummy = True Then
 
                     Masktobg(bg, sprite(30), Maskingbgrot(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1 + 20, icePenguinPosy), 132, 215, 162, 249, icePenguinPos1X1 + 20, icePenguinPosy)
@@ -290,7 +285,7 @@
 
                             If bgsteps >= 200 Then
                                 edge = "left"
-
+                                Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                             End If
 
                             If bgsteps >= megaposx - 120 And bgsteps <= megaposx + 60 Then
@@ -314,6 +309,7 @@
 
                             If bgsteps <= 15 Then
                                 edge = "right"
+                                Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                             End If
 
                             If bgsteps >= megaposx - 120 And bgsteps <= megaposx + 60 Then
@@ -366,7 +362,7 @@
                     Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy)
                 End If
             End If
-            '  If icesnow = True Then
+
 
             If tickk > 4 Then
                 If direction = "l" Then
@@ -391,7 +387,6 @@
                     End If
                 End If
             End If
-            '  End If
             Select Case tick
 
 
@@ -531,41 +526,6 @@
                         changeDirleft = False
                     End If
                 Case tick = 3 To 13
-
-                    'If edge = "right" Then
-                    '    bgsteps = bgsteps + vx
-                    'Else
-                    '    bgsteps = bgsteps - vx
-                    'End If
-
-                    'bgelev = bgelev + vy
-                    'vy = vy + 0.2
-
-                    'If leapAtLever = True Then
-                    '    Select Case counter
-                    '        Case counter = 4 To 10
-                    '            vy = 0
-                    '            vx = 0
-                    '        Case Else
-                    '            leapAtLever = False
-                    '            leapDown = True
-                    '            vx = 15
-                    '            vy = 20
-                    '    End Select
-                    'End If
-
-                    'If leapStart = True Then
-
-                    '    If bgelev >= hitLever.Y And bgelev <= hitLever.Y + 30 Then
-                    '        leapAtLever = True
-                    '        leapStart = False
-
-                    'End If
-                    'End If
-
-                    '
-
-
 
 
                     Select Case edge
@@ -799,7 +759,7 @@
                         Timer.Start()
 
                         Select Case counter
-                            Case counter = 1 To 10
+                            Case counter = 1 To 7
                                 vx = 10
                             Case Else
                                 vy = 15
@@ -831,7 +791,7 @@
                                 Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                                 direction = "r"
                             End If
-
+                            Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                             Masktobg(bg, sprite(26), Maskingbgrot(bg, SpriteSheet2, 46, 126, 85, 165, bgsteps, bgelev), 46, 126, 85, 165, bgsteps, bgelev)
 
                             If bgsteps >= 200 Then
@@ -865,6 +825,7 @@
                         Masktobg(bg, sprite(0), Maskingbg(bg, SpriteSheet2, 5, 76, 46, 117, bgsteps, bgelev), 5, 76, 46, 117, bgsteps, bgelev)
                         Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                     Else
+                        Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                         Masktobg(bg, sprite(17), Maskingbgrot(bg, SpriteSheet2, 5, 76, 46, 117, bgsteps, bgelev), 5, 76, 46, 117, bgsteps, bgelev)
                     End If
                     Timer.Stop()
@@ -1376,279 +1337,3 @@
         End Function
 
     End Class
-
-'Function drawspritesheet(sprite As Bitmap, left As Integer, top As Integer, right As Integer, bot As Integer, drawx As Integer, drawy As Integer, arrcolor() As Integer)
-'    Dim n As Integer = 0
-'    Dim posx, posy As Integer
-
-
-'    posx = right - left
-'    posy = bot - top
-'    For a As Integer = drawy To posy + drawy
-'        For b As Integer = drawx To posx + drawx
-'            sprite.SetPixel(b, a, Color.FromArgb(arrcolor(n)))
-'            n += 1
-'        Next
-'    Next
-
-
-'    Return Nothing
-'End Function
-
-'buat dummyIce
-
-
-
-'Public Class Form1
-'    Dim Slides As Bitmap = Image.FromFile("C:\Users\USER\source\repos\PA-Chill-Penguin-IceSHOT\Slides0.jpg")
-'    Dim Slides1 As Bitmap = Image.FromFile("C:\Users\USER\source\repos\PA-Chill-Penguin-IceSHOT\Slides1.jpg")
-'    Dim Slides2 As Bitmap = Image.FromFile("C:\Users\USER\source\repos\PA-Chill-Penguin-IceSHOT\Slides2.jpg")
-'    Dim Normal As Bitmap = Image.FromFile("C:\Users\USER\source\repos\PA-Chill-Penguin-IceSHOT\Normal1.jpg")
-'    Dim bg As Image = Image.FromFile("C:\Users\USER\source\repos\PA-Chill-Penguin-IceSHOT\Bg.jpg")
-'    Dim Normal1 As Bitmap = Image.FromFile("C:\Users\USER\source\repos\PA-Chill-Penguin-IceSHOT\Normal2(mask).jpg")
-'    Dim Normal2 As Bitmap = Image.FromFile("C:\Users\USER\source\repos\PA-Chill-Penguin-IceSHOT\Normal2.jpg")
-'    Dim Shot As Bitmap = Image.FromFile("C:\Users\USER\source\repos\PA-Chill-Penguin-IceSHOT\Shot1.jpg")
-'    Dim iceShot As Bitmap = Image.FromFile("C:\Users\USER\source\repos\PA-Chill-Penguin-IceSHOT\iceShot.jpg")
-'    Dim megamen As Bitmap = Image.FromFile("C:\Users\USER\source\repos\PA-Chill-Penguin-IceSHOT\megaman.jpg")
-
-'    Dim screenw As Integer
-'    Dim screenh As Integer
-'    Dim GFX As Graphics
-'    Dim tick As Integer
-'    Dim tickk As Integer
-'    Dim respawntime As Integer
-'    Dim steps As Integer = 1119
-'    Dim stepss As Integer = 1090
-'    Dim megaposx As Integer = 100
-'    Dim direction As Char = "l"
-'    Dim directiondummy As Char = "k"
-'    Dim action As String = "idle"
-'    Dim edge As String = "left"
-'    Dim changeDirright As Boolean = False
-'    Dim changeDirleft As Boolean = True
-'    Dim myPen As Pen
-'    Dim endd As Point
-'    Dim recY As Integer = 300
-
-'    Dim megamanhit As Boolean
-'    Dim drawsnowball As Boolean
-'    Dim randomspot As Integer
-'    Dim summonmegamen As Boolean
-'    Dim Respawn As Boolean
-'    Dim rechitbox As Rectangle = New Rectangle(megaposx, 300, Normal.Width, Normal.Height)
-'    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-
-'    End Sub
-
-'    Private Sub Pb_Paint(sender As Object, e As PaintEventArgs) Handles Pb.Paint, MyBase.Paint
-
-'        GFX = e.Graphics
-'        Label3.Text = stepss
-
-'        GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
-'        GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'        GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
-
-'        If summonmegamen = True Then
-'            Randomize()
-'            randomspot = CInt(Math.Floor((1115 - 71 + 1) * Rnd())) + 71
-
-'            Label2.Text = randomspot
-
-'            summonmegamen = False
-'            Respawn = True
-'        End If
-
-'        If Respawn = True Then
-'            If randomspot <> steps + 30 And randomspot <> steps - 30 Then
-
-
-
-'                GFX.DrawImage(megamen, randomspot, 300, Normal.Width, Normal.Height)
-'                rechitbox = New Rectangle(randomspot, 300, Normal.Width, Normal.Height)
-'                GFX.DrawRectangle(myPen, rechitbox)
-
-'            End If
-'        End If
-'        Normal.MakeTransparent(Color.White)
-'        '' ujung stage 1120 x coordinate nya
-'        Slides.MakeTransparent(Color.White)
-'        myPen = New Pen(Drawing.Color.Transparent, 5)
-'        ' GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-
-'        If action = "idle" Then
-
-'            GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
-'            GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'            GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
-
-'            GFX.DrawRectangle(myPen, rechitbox)
-
-
-'            '  GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-
-
-'        ElseIf action = "slide" Then
-
-'            Select Case tick
-'                Case tick = 1 To 2
-
-
-'                    Slides.MakeTransparent()
-
-
-'                    If direction = "l" Then
-'                        If changeDirleft = False Then
-
-'                            GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'                            GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-
-'                            Slides.RotateFlip(RotateFlipType.Rotate180FlipY)
-
-'                        End If
-
-'                        GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
-'                        GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'                        '       GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-
-'                        changeDirright = False
-'                        changeDirleft = True
-'                    Else
-'                        If changeDirright = False Then
-'                            GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'                            '         GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-
-'                            Slides.RotateFlip(RotateFlipType.Rotate180FlipY)
-'                        End If
-
-'                        GFX.DrawImage(Slides, steps, 300, Normal.Width, Normal.Height)
-'                        '    GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-
-'                        GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'                        changeDirright = True
-'                        changeDirleft = False
-'                    End If
-
-
-
-'                Case tick = 2 To 30
-
-'                    Select Case edge
-
-'                        Case "right"
-
-
-'                            If direction = "l" Then
-'                                Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
-'                                Slides1.RotateFlip(RotateFlipType.Rotate180FlipY)
-'                                Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
-'                                GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'                                '           GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-
-'                                direction = "r"
-'                            End If
-
-'                            GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'                            '     GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-
-'                            GFX.DrawImage(Slides1, steps, 300, Normal.Width, Normal.Height)
-'                            Slides1.MakeTransparent()
-'                            steps += 50
-
-'                            If steps >= 1118 Then
-'                                edge = "left"
-'                                ste.Text = steps
-'                            End If
-
-'                        Case "left"
-
-'                            If direction = "r" Then
-'                                GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'                                '         GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-
-'                                Shot.RotateFlip(RotateFlipType.Rotate180FlipY)
-'                                Slides1.RotateFlip(RotateFlipType.Rotate180FlipY)
-'                                Normal.RotateFlip(RotateFlipType.Rotate180FlipY)
-'                                direction = "l"
-'                            End If
-'                            GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'                            '      GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-
-'                            GFX.DrawImage(Slides1, steps, 300, Normal.Width, Normal.Height)
-'                            Slides1.MakeTransparent()
-'                            steps -= 50
-
-'                            If steps <= 70 Then
-'                                edge = "right"
-'                            End If
-
-'                    End Select
-
-'                Case Else
-
-'                    GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'                    GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-
-'                    GFX.DrawImage(Normal, steps, 300, Normal.Width, Normal.Height)
-'                    action = "idle"
-
-'                    Timer.Stop()
-'                    ste.Text = steps
-
-
-'            End Select
-
-'        ElseIf action = "Shot" Then
-
-'            If Respawn = True Then
-
-'                GFX.DrawRectangle(myPen, randomspot, recY, Normal.Width, Normal.Height)
-
-'            ElseIf megamanhit = False Then
-'                GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'                GFX.DrawRectangle(myPen, rechitbox)
-
-
-'            End If
-
-'            If drawsnowball = True Then
-'                If tickk > 3 Then
-'                    If direction = "l" Then
-
-'                        '    GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-'                        GFX.DrawImage(iceShot, stepss, 310)
-'                        stepss -= 30
-'                    Else
-'                        ' GFX.DrawImage(megamen, megaposx, 300, Normal.Width, Normal.Height)
-'                        'GFX.DrawRectangle(myPen, megaposx, recY, Normal.Width, Normal.Height)
-
-'                        GFX.DrawImage(iceShot, stepss + 100, 310)
-'                        stepss += 30
-'                    End If
-'                End If
-'            End If
-
-'          
-
-
-
-'            If stepss <= 50 Then
-
-'                Timer.Stop()
-'                action = "idle"
-'                GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
-
-'            End If
-
-
-
-
-
-'            If direction = "r" Then
-'                If stepss <= megaposx Then
-'                    Timer.Start()
-'                End If
-'            Else
-'                action = "Shot"
-'                Timer.Start()
