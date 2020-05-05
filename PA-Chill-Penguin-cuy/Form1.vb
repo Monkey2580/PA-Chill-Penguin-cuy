@@ -144,10 +144,6 @@
         spriteshot = accSpriteSheetRot(SpriteSheet1, 130, 128, 174, 176)
         sprite.Add(spriteshot)
 
-        ''Masktobg(bg, idle, Maskingbg(bg, SpriteSheet2, 5, 76, 46, 117, 15, 148), 5, 76, 46, 117, 15, 148)
-        ''  Masktobg(bg, idle, Maskingbg(bg, SpriteSheet2, 5, 76, 46, 117, 15, 148), 5, 76, 46, 117, 15, 148)
-        ' Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, bgsteps, bgelev), 1, 6, 32, 42, bgsteps, bgelev)
-
 
     End Sub
 
@@ -211,7 +207,7 @@
             UpdateBg(bg, back)
             Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
 
-            Masktobg(bg, sprite(17), Maskingbgrot(bg, SpriteSheet2, 5, 76, 46, 117, bgsteps, bgelev), 5, 76, 46, 117, bgsteps, bgelev)
+            Masktobg(bg, sprite(17), Maskingbg(bg, SpriteSheet2, 5, 76, 46, 117, bgsteps, bgelev), 5, 76, 46, 117, bgsteps, bgelev)
             GFX.DrawImage(bg, 0, 0, bg.Width * 5, bg.Height * 2)
 
 
@@ -223,6 +219,7 @@
                 If summonIceDummy = True Then
 
                     Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos1X1, icePenguinPosy)
+                    Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy)
                     Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                 End If
             Else
@@ -274,6 +271,7 @@
                     If bgsteps >= icePenguinPos1X1 - 20 And bgsteps <= icePenguinPos1X2 + 20 Then
                         UpdateBg(bg, back)
                         summonIceDummy = False
+
                     End If
                     Select Case edge
 
@@ -357,6 +355,7 @@
                 If summonIceDummy = True Then
 
                     Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1, bgelev), 132, 215, 162, 249, icePenguinPos1X1, bgelev)
+                    Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy)
                     Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
 
                 End If
@@ -364,7 +363,7 @@
                 If summonIceDummy = True Then
 
                     Masktobg(bg, sprite(30), Maskingbgrot(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1 + 20, bgelev), 132, 215, 162, 249, icePenguinPos1X1 + 20, bgelev)
-
+                    Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy)
                 End If
             End If
             '  If icesnow = True Then
@@ -486,13 +485,14 @@
             UpdateBg(bg, back)
             If facedir = "l" Then
                 If summonIceDummy = True Then
-
+                    Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                     Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos1X1, icePenguinPosy)
                     Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
+
                 End If
             Else
                 If summonIceDummy = True Then
-
+                    Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                     Masktobg(bg, sprite(30), Maskingbgrot(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1 + 20 + 20, icePenguinPosy), 132, 215, 162, 249, icePenguinPos1X1 + 20 + 20, icePenguinPosy)
 
                 End If
@@ -512,7 +512,7 @@
 
 
                         Masktobg(bg, sprite(24), Maskingbgrot(bg, SpriteSheet2, 96, 174, 134, 208, bgsteps, bgelev + 5), 96, 174, 134, 208, bgsteps, bgelev + 5)
-
+                        Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                         changeDirright = True
                         changeDirleft = False
                     End If
@@ -525,7 +525,7 @@
                         changeDirright = False
                         changeDirleft = True
                     Else
-
+                        Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                         Masktobg(bg, sprite(25), Maskingbgrot(bg, SpriteSheet2, 7, 126, 45, 166, bgsteps, bgelev), 7, 126, 45, 166, bgsteps, bgelev)
                         changeDirright = True
                         changeDirleft = False
@@ -575,7 +575,7 @@
 
 
                             Masktobg(bg, sprite(26), Maskingbgrot(bg, SpriteSheet2, 46, 126, 85, 165, bgsteps, bgelev), 46, 126, 85, 165, bgsteps, bgelev)
-
+                            Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                             If bgsteps >= 115 Then
                                 edge = "left"
                             End If
@@ -617,6 +617,22 @@
                     End Select
 
                 Case tick = 13 To 30
+                    If direction = "l" Then
+                        icePenguinPos1X1 -= 10
+                        megaposx -= 10
+                    ElseIf direction = "r" Then
+                        icePenguinPos1X1 += 10
+                        megaposx += 10
+                    End If
+                    If icePenguinPos1X1 <= 15 Or icePenguinPos1X1 >= 180 Then
+
+                        summonIceDummy = False
+                    End If
+                    If megaposx <= 15 Then
+                        megaposx = 15
+                    ElseIf megaposx >= 212 Then
+                        megaposx = 212
+                    End If
 
                     Select Case edge
 
@@ -625,7 +641,7 @@
 
 
                             Masktobg(bg, sprite(22), Maskingbgrot(bg, SpriteSheet2, 130, 3, 163, 65, 100, 20), 130, 3, 163, 65, 100, 20)
-
+                            Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                             If bgsteps >= 115 Then
                                 edge = "left"
                             End If
@@ -655,7 +671,7 @@
                             End If
 
                             Masktobg(bg, sprite(23), Maskingbgrot(bg, SpriteSheet2, 169, 19, 205, 64, bgsteps, bgelev), 169, 19, 205, 64, bgsteps, bgelev)
-
+                            Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                             If bgsteps >= 115 Then
                                 edge = "left"
                             End If
@@ -667,6 +683,7 @@
                         Case "left"
 
                             If direction = "r" Then
+                                Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                                 Masktobg(bg, sprite(23), Maskingbgrot(bg, SpriteSheet2, 169, 19, 205, 64, bgsteps, bgelev), 169, 19, 205, 64, bgsteps, bgelev)
                                 direction = "l"
                             End If
@@ -674,6 +691,7 @@
                             Masktobg(bg, sprite(6), Maskingbg(bg, SpriteSheet2, 169, 19, 205, 64, bgsteps, bgelev), 169, 19, 205, 64, bgsteps, bgelev)
                             Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                             If bgsteps <= 90 Then
+                                edge = "right"
                                 edge = "right"
                             End If
                             If bgelev >= 155 Then
@@ -705,13 +723,13 @@
             UpdateBg(bg, back)
             If facedir = "l" Then
                 If summonIceDummy = True Then
-
+                    Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy)
                     Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos1X1, icePenguinPosy)
                     Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                 End If
             Else
                 If summonIceDummy = True Then
-
+                    Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy)
                     Masktobg(bg, sprite(30), Maskingbgrot(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1 + 20, icePenguinPosy), 132, 215, 162, 249, icePenguinPos1X1 + 20, icePenguinPosy)
 
                 End If
@@ -868,7 +886,9 @@
 
                     If direction = "l" Then
                         If changeDirleft = False Then
+
                             Masktobg(bg, sprite(18), Maskingbgrot(bg, SpriteSheet2, 45, 74, 90, 116, bgsteps, bgelev), 45, 74, 90, 116, bgsteps, bgelev)
+
                         End If
 
                         Masktobg(bg, sprite(1), Maskingbg(bg, SpriteSheet2, 45, 74, 90, 116, bgsteps, bgelev), 45, 74, 90, 116, bgsteps, bgelev)
@@ -901,36 +921,38 @@
                                 If summonIceDummy = True Then
 
                                     Masktobg(bg, sprite(11), Maskingbg(bg, SpriteSheet2, 80, 232, 96, 250, icePenguinPos1X1, icePenguinPosy), 80, 232, 96, 250, icePenguinPos1X1, icePenguinPosy)
+                                    Masktobg(bg, sprite(11), Maskingbg(bg, SpriteSheet2, 80, 232, 96, 250, icePenguinPos2X1, icePenguinPosy), 80, 232, 96, 250, icePenguinPos2X1, icePenguinPosy)
                                     Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                                 End If
                                 direction = "r"
                         End If
-
-                        Masktobg(bg, sprite(33), Maskingbgrot(bg, SpriteSheet2, 130, 128, 174, 165, bgsteps, bgelev), 130, 128, 174, 165, bgsteps, bgelev)
+                            Masktobg(bg, sprite(31), Maskingbgrot(bg, SpriteSheet2, 186, 215, 244, 232, bgsteps + 65, bgelev), 186, 215, 244, 232, bgsteps + 65, bgelev)
+                            Masktobg(bg, sprite(33), Maskingbgrot(bg, SpriteSheet2, 130, 128, 174, 165, bgsteps, bgelev), 130, 128, 174, 165, bgsteps, bgelev)
                             If summonIceDummy = True Then
 
                                 Masktobg(bg, sprite(28), Maskingbgrot(bg, SpriteSheet2, 80, 232, 96, 250, icePenguinPos1X1 + 20, icePenguinPosy), 80, 232, 96, 250, icePenguinPos1X1 + 20, icePenguinPosy)
-
+                                Masktobg(bg, sprite(28), Maskingbgrot(bg, SpriteSheet2, 80, 232, 96, 250, icePenguinPos2X1 + 20, icePenguinPosy), 80, 232, 96, 250, icePenguinPos2X1 + 20, icePenguinPosy)
                             End If
 
                         Case "left"
 
-                        If direction = "r" Then
+                            If direction = "r" Then
+                                Masktobg(bg, sprite(31), Maskingbgrot(bg, SpriteSheet2, 186, 215, 244, 232, bgsteps + 65, bgelev), 186, 215, 244, 232, bgsteps + 65, bgelev)
                                 Masktobg(bg, sprite(33), Maskingbgrot(bg, SpriteSheet2, 130, 128, 174, 165, bgsteps, bgelev), 130, 128, 174, 165, bgsteps, bgelev)
                                 If summonIceDummy = True Then
 
                                     Masktobg(bg, sprite(28), Maskingbgrot(bg, SpriteSheet2, 80, 232, 96, 250, icePenguinPos1X1 + 20, icePenguinPosy), 80, 232, 96, 250, icePenguinPos1X1 + 20, icePenguinPosy)
-
+                                    Masktobg(bg, sprite(28), Maskingbgrot(bg, SpriteSheet2, 80, 232, 96, 250, icePenguinPos2X1 + 20, icePenguinPosy), 80, 232, 96, 250, icePenguinPos2X1 + 20, icePenguinPosy)
                                 End If
                                 direction = "l"
-                        End If
-
+                            End If
+                            Masktobg(bg, sprite(14), Maskingbg(bg, SpriteSheet2, 186, 215, 244, 232, bgsteps - 65, bgelev), 186, 215, 244, 232, bgsteps - 65, bgelev)
                             Masktobg(bg, sprite(16), Maskingbg(bg, SpriteSheet2, 130, 128, 174, 165, bgsteps, bgelev), 130, 128, 174, 165, bgsteps, bgelev)
                             Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                             If summonIceDummy = True Then
 
                                 Masktobg(bg, sprite(11), Maskingbg(bg, SpriteSheet2, 80, 232, 96, 250, icePenguinPos1X1, icePenguinPosy), 80, 232, 96, 250, icePenguinPos1X1, icePenguinPosy)
-
+                                Masktobg(bg, sprite(11), Maskingbg(bg, SpriteSheet2, 80, 232, 96, 250, icePenguinPos2X1, icePenguinPosy), 80, 232, 96, 250, icePenguinPos2X1, icePenguinPosy)
                             End If
                     End Select
 
@@ -950,36 +972,37 @@
                                 If summonIceDummy = True Then
 
                                     Masktobg(bg, sprite(12), Maskingbg(bg, SpriteSheet2, 101, 222, 128, 250, icePenguinPos1X1, icePenguinPosy), 101, 222, 128, 250, icePenguinPos1X1, icePenguinPosy)
-
+                                    Masktobg(bg, sprite(12), Maskingbg(bg, SpriteSheet2, 101, 222, 128, 250, icePenguinPos2X1, icePenguinPosy), 101, 222, 128, 250, icePenguinPos2X1, icePenguinPosy)
                                 End If
                                 direction = "r"
                             End If
-
+                            Masktobg(bg, sprite(32), Maskingbgrot(bg, SpriteSheet2, 191, 234, 241, 251, bgsteps + 65, bgelev), 191, 234, 241, 251, bgsteps + 65, bgelev)
                             Masktobg(bg, sprite(33), Maskingbgrot(bg, SpriteSheet2, 130, 128, 174, 165, bgsteps, bgelev), 130, 128, 174, 165, bgsteps, bgelev)
                             If summonIceDummy = True Then
 
                                 Masktobg(bg, sprite(29), Maskingbgrot(bg, SpriteSheet2, 101, 222, 128, 250, icePenguinPos1X1 + 20, icePenguinPosy), 101, 222, 128, 250, icePenguinPos1X1 + 20, icePenguinPosy)
-
+                                Masktobg(bg, sprite(29), Maskingbgrot(bg, SpriteSheet2, 101, 222, 128, 250, icePenguinPos2X1 + 20, icePenguinPosy), 101, 222, 128, 250, icePenguinPos2X1 + 20, icePenguinPosy)
                             End If
 
                         Case "left"
 
                             If direction = "r" Then
+                                Masktobg(bg, sprite(32), Maskingbgrot(bg, SpriteSheet2, 191, 234, 241, 251, bgsteps + 65, bgelev), 191, 234, 241, 251, bgsteps + 65, bgelev)
                                 Masktobg(bg, sprite(33), Maskingbgrot(bg, SpriteSheet2, 130, 128, 174, 165, bgsteps, bgelev), 130, 128, 174, 165, bgsteps, bgelev)
                                 If summonIceDummy = True Then
 
                                     Masktobg(bg, sprite(29), Maskingbgrot(bg, SpriteSheet2, 101, 222, 128, 250, icePenguinPos1X1 + 20, icePenguinPosy), 101, 222, 128, 250, icePenguinPos1X1 + 20, icePenguinPosy)
-
+                                    Masktobg(bg, sprite(29), Maskingbgrot(bg, SpriteSheet2, 101, 222, 128, 250, icePenguinPos2X1 + 20, icePenguinPosy), 101, 222, 128, 250, icePenguinPos2X1 + 20, icePenguinPosy)
                                 End If
                                 direction = "l"
                             End If
-
+                            Masktobg(bg, sprite(15), Maskingbg(bg, SpriteSheet2, 191, 234, 241, 251, bgsteps - 65, bgelev), 191, 234, 241, 251, bgsteps - 65, bgelev)
                             Masktobg(bg, sprite(16), Maskingbg(bg, SpriteSheet2, 130, 128, 174, 165, bgsteps, bgelev), 130, 128, 174, 165, bgsteps, bgelev)
                             Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                             If summonIceDummy = True Then
 
                                 Masktobg(bg, sprite(12), Maskingbg(bg, SpriteSheet2, 101, 222, 128, 250, icePenguinPos1X1, icePenguinPosy), 101, 222, 128, 250, icePenguinPos1X1, icePenguinPosy)
-
+                                Masktobg(bg, sprite(12), Maskingbg(bg, SpriteSheet2, 101, 222, 128, 250, icePenguinPos2X1, icePenguinPosy), 101, 222, 128, 250, icePenguinPos2X1, icePenguinPosy)
                             End If
                     End Select
 
@@ -998,36 +1021,37 @@
                                 If summonIceDummy = True Then
 
                                     Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos1X1, icePenguinPosy)
-
+                                    Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy)
                                 End If
                                 direction = "r"
                             End If
-
+                            Masktobg(bg, sprite(31), Maskingbgrot(bg, SpriteSheet2, 186, 215, 244, 232, bgsteps + 65, bgelev), 186, 215, 244, 232, bgsteps + 65, bgelev)
                             Masktobg(bg, sprite(33), Maskingbgrot(bg, SpriteSheet2, 130, 128, 174, 165, bgsteps, bgelev), 130, 128, 174, 165, bgsteps, bgelev)
 
                             If summonIceDummy = True Then
 
                                 Masktobg(bg, sprite(30), Maskingbgrot(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1 + 20, icePenguinPosy), 132, 215, 162, 249, icePenguinPos1X1 + 20, icePenguinPosy)
-
+                                Masktobg(bg, sprite(30), Maskingbgrot(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos2X1 + 20, icePenguinPosy), 132, 215, 162, 249, icePenguinPos2X1 + 20, icePenguinPosy)
                             End If
                         Case "left"
 
                             If direction = "r" Then
+                                Masktobg(bg, sprite(31), Maskingbgrot(bg, SpriteSheet2, 186, 215, 244, 232, bgsteps + 65, bgelev), 186, 215, 244, 232, bgsteps + 65, bgelev)
                                 Masktobg(bg, sprite(33), Maskingbgrot(bg, SpriteSheet2, 130, 128, 174, 165, bgsteps, bgelev), 130, 128, 174, 165, bgsteps, bgelev)
                                 If summonIceDummy = True Then
 
                                     Masktobg(bg, sprite(30), Maskingbgrot(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1 + 20, icePenguinPosy), 132, 215, 162, 249, icePenguinPos1X1 + 20, icePenguinPosy)
-
+                                    Masktobg(bg, sprite(30), Maskingbgrot(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos2X1 + 20, icePenguinPosy), 132, 215, 162, 249, icePenguinPos2X1 + 20, icePenguinPosy)
                                 End If
                                 direction = "l"
                             End If
-
+                            Masktobg(bg, sprite(14), Maskingbg(bg, SpriteSheet2, 186, 215, 244, 232, bgsteps - 65, bgelev), 186, 215, 244, 232, bgsteps - 65, bgelev)
                             Masktobg(bg, sprite(16), Maskingbg(bg, SpriteSheet2, 130, 128, 174, 165, bgsteps, bgelev), 130, 128, 174, 165, bgsteps, bgelev)
                             Masktobg(bg, megaman, Maskingbg(bg, megamanblack, 1, 6, 32, 42, megaposx, megaposy), 1, 6, 32, 42, megaposx, megaposy)
                             If summonIceDummy = True Then
 
                                 Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos1X1, icePenguinPosy)
-
+                                Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy)
                             End If
 
 
@@ -1041,6 +1065,7 @@
                         If summonIceDummy = True Then
 
                             Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos1X1, icePenguinPosy)
+                            Masktobg(bg, sprite(13), Maskingbg(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy), 132, 215, 162, 249, icePenguinPos2X1, icePenguinPosy)
                             facedir = "l"
                         End If
                     Else
@@ -1048,6 +1073,7 @@
                         If summonIceDummy = True Then
 
                             Masktobg(bg, sprite(30), Maskingbgrot(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos1X1 + 20, icePenguinPosy), 132, 215, 162, 249, icePenguinPos1X1 + 20, icePenguinPosy)
+                            Masktobg(bg, sprite(30), Maskingbgrot(bg, SpriteSheet2, 132, 215, 162, 249, icePenguinPos2X1 + 20, icePenguinPosy), 132, 215, 162, 249, icePenguinPos2X1 + 20, icePenguinPosy)
                             facedir = "r"
                         End If
                     End If
