@@ -578,9 +578,11 @@
 
                 Case tick = 13 To 30
                     If direction = "l" Then
+                        icePenguinPos2X1 -= 10
                         icePenguinPos1X1 -= 10
                         megaposx -= 10
                     ElseIf direction = "r" Then
+                        icePenguinPos2X1 += 10
                         icePenguinPos1X1 += 10
                         megaposx += 10
                     End If
